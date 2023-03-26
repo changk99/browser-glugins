@@ -3,19 +3,17 @@ const clearEle = document.getElementById("clear")
 const notificationEle = document.getElementById("notification")
 const setupEle = document.getElementById("setup")
 const urlEle = document.getElementById("url")
+const notificationCloseBtn = notificationEle.querySelector(".notification__closeBtn")
+const contentEle = notificationEle.querySelector("#content")
 
 let notificationTimer = null
 const notificationTimeout = 1500
 
 /**
  * 通知
- * @param {string} message 
+ * @param {string} message
  */
 function notify(message) {
-  const contentEle = notificationEle.querySelector("#content")
-  const notificationCloseBtn = notificationEle.querySelector(
-    ".notification__closeBtn"
-  )
   contentEle.textContent = message
   const classList = notificationEle.classList
   if (!classList.contains("hidden")) {
@@ -35,29 +33,33 @@ function notify(message) {
           classList.add("hidden")
         }, notificationTimeout)
       })
-
-      notificationCloseBtn.addEventListener("click", () => {
-        if (notificationTimer) {
-          clearTimeout(notificationTimer)
-          notificationTimer = null
-        }
-        classList.add("hidden")
-      })
     })
   })
 }
 
+// 关闭弹框
+notificationCloseBtn.addEventListener("click", () => {
+  if (notificationTimer) {
+    clearTimeout(notificationTimer)
+    notificationTimer = null
+  }
+  notificationEle.classList.add("hidden")
+})
+
 /**
  * 向 content 脚本发送信号
- * @param {string} message 
+ * @param {string} message
  */
 function sendMessage(message) {
-  chrome.tabs.query({
-    active: true,
-    lastFocusedWindow: true
-  }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, message)
-  })
+  chrome.tabs.query(
+    {
+      active: true,
+      lastFocusedWindow: true,
+    },
+    function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, message)
+    }
+  )
 }
 
 // 启动和禁止
@@ -98,7 +100,7 @@ urlEle.addEventListener("change", (e) => {
   url = url.trim()
   syncStorage.set(
     {
-      url
+      url,
     },
     () => {
       notify("成功更新拦截的 url")
@@ -118,12 +120,14 @@ clearEle.addEventListener("click", () => {
 // 初始化,因为每一个次打开 popup 页面都会重新执行,初始化可以保证状态一致
 function init() {
   const inputEle = setupEle.querySelector(".checkbox__input")
-  syncStorage.get({
-    url: "",
-    disabled: false
-  }).then(({ url, disabled }) => {
-    inputEle.classList.toggle('is-checked', !disabled)
-    urlEle.value = url
-  })
+  syncStorage
+    .get({
+      url: "",
+      disabled: false,
+    })
+    .then(({ url, disabled }) => {
+      inputEle.classList.toggle("is-checked", !disabled)
+      urlEle.value = url
+    })
 }
 init()
