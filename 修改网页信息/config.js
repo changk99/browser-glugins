@@ -1,0 +1,5 @@
+const SINGAL = {
+  TEARDOWN: 'TEARDOWN',
+  SETUP: 'SETUP',
+  RESTART: 'RESTART'
+}

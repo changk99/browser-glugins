@@ -1,0 +1,26 @@
+{
+  "name": "修改网页信息", 
+  "manifest_version": 3,
+  "version": "1.0",
+  "description": "临时修改网页信息,网页信息修改后可以刷新保持",
+  "permissions": ["contextMenus", "storage"],
+  "action": {
+    "default_icon": "icon.png",
+    "default_title": "修改网页信息",
+    "default_popup": "action/popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "config.js",
+        "scripts/content.js"
+      ],
+      "matches": ["*://*/*"],
+      "type": "module",
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "128": "icon.png"
+  }
+}

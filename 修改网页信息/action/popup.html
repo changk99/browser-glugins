@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.5"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="renderer" content="webkit" />
+    <title>popup</title>
+    <link rel="stylesheet" href="../assets/style/index.css" />
+    <style>
+      body {
+        min-width: 400px
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-item">
+      <label class="checkbox" id="setup">
+        <span class="checkbox__input is-checked">
+          <input
+            class="checkbox__original"
+            type="checkbox"
+            value="启动" />
+          <span class="checkbox__inner"></span>
+        </span>
+        <span class="checkbox__label">启动</span>
+      </label>
+    </div>
+    <div class="form-item">
+      <label class="label" for="url">url: </label>
+      <input
+        placeholder="设置需要拦截的页面地址,支持通配符 */?和正则匹配"
+        class="input"
+        type="text"
+        id="url"
+      />
+    </div>
+    <div class="clear-cache">
+      <button id="clear" class="btn">清除缓存</button>
+    </div>
+    <div class="notification hidden" id="notification">
+      <div class="content" id="content"></div>
+      <i class="notification__closeBtn"
+        ><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill="currentColor"
+            d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
+          ></path></svg></i>
+    </div>
+    <script src="../config.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
