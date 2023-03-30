@@ -5,7 +5,7 @@ const url = document.location.href
  */
 let activeObserver = null
 let setTextTimer = null
-let setTextInterval = 100
+let setTextInterval = 80
 
 /**
  * 获取 dom 元素对应的 XPath
@@ -93,6 +93,7 @@ async function canEditable() {
     return true
   }
   try {
+    console.log(url)
     let regExpResult = new RegExp(url).test(href)
     if (regExpResult) {
       return true
