@@ -1,0 +1,36 @@
+{
+  "name": "通用文字识别", 
+  "manifest_version": 3,
+  "version": "1.0",
+  "description": "截取浏览器内容,识别其中的文字内容",
+  "permissions": ["contextMenus", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_icon": "icon.png",
+    "default_title": "通用文字识别",
+    "default_popup": "action/popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/js/crypto-js.js",
+        "api/fetch.js",
+        "api/baidu.js",
+        "assets/js/index.js",
+        "config.js",
+        "scripts/content.js"
+      ],
+      "css": [
+        "assets/style/index.css"
+      ],
+      "matches": ["*://*/*"],
+      "type": "module"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.5"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta name="author" content="zhizhangjiqiren changlishe" />
+    <title>popup</title>
+    <link rel="stylesheet" href="../assets/style/index.css" />
+    <style>
+      body {
+        min-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-item">
+      <label class="checkbox" id="setup">
+        <span class="checkbox__input is-checked">
+          <input class="checkbox__original" type="checkbox" value="启动" />
+          <span class="checkbox__inner"></span>
+        </span>
+        <span class="checkbox__label">启动</span>
+      </label>
+    </div>
+    <div class="platforms" id="platforms"></div>
+    <div class="platform-setting" id="platform-setting"></div>
+    <div id="open-content-view-button" class="btn" style="margin-left: 10px">
+      打开文本窗口
+    </div>
+    <div id="clear-key" class="btn" style="margin-left: 10px">
+      清除 key 信息
+    </div>
+    <div class="operation-tip">
+      <span>窗口聚焦后,按住 ctrl + alt 进行截图操作</span>
+    </div>
+    <script src="../assets/js/index.js"></script>
+    <script src="../config.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
