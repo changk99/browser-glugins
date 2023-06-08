@@ -93,7 +93,7 @@ async function getRecognizeGeneralContent(dataUrl) {
     try {
       const content = await recognizeGeneral.getContent(dataUrl)
       const contentViewContentEle = document.getElementById(
-        "content-view-content"
+        "cl-content-view-content"
       )
       contentViewContentEle.value = content
     } catch (error) {
@@ -255,7 +255,7 @@ function teardown() {
  * 打开文本窗口
  */
 function openContentView() {
-  const contentViewEle = document.getElementById("content-view")
+  const contentViewEle = document.getElementById("cl-content-view")
   if (contentViewEle) {
     contentViewEle.classList.remove("hidden")
   } else {
@@ -285,11 +285,21 @@ chrome.runtime.onMessage.addListener(async function (request) {
  * @param {string} content
  */
 async function setClipboard(content) {
-  const type = "text/plain"
-  const blob = new Blob([content], { type })
-  const data = [new ClipboardItem({ [type]: blob })]
-
-  await navigator.clipboard.write(data)
+  if (navigator && 'clipboard' in navigator) {
+    const type = "text/plain"
+    const blob = new Blob([content], { type })
+    const data = [new ClipboardItem({ [type]: blob })]
+    await navigator.clipboard.write(data)
+  } else {
+    const textareaEle = document.createElement('textarea')
+    textareaEle.value = content || ''
+    textareaEle.style.position = 'absolute'
+    textareaEle.style.opacity = '0'
+    document.body.appendChild(textareaEle)
+    textareaEle.select()
+    document.execCommand('copy')
+    textareaEle.remove()
+  }
 }
 
 /**
@@ -316,36 +326,36 @@ async function copy(target) {
  * @param {{container: HTMLElement}} param0
  */
 function createContentView({ container = document.body } = {}) {
-  let contentViewEle = document.getElementById("content-view")
+  let contentViewEle = document.getElementById("cl-content-view")
 
   if (contentViewEle) {
     contentViewEle.classList.remove("hidden")
     return
   }
   contentViewCloseBtn = createCloseButton()
-  contentViewCloseBtn.classList.add("content-view__closeBtn")
-  contentViewCloseBtn.id = "content-view-close-btn"
+  contentViewCloseBtn.classList.add("cl-content-view__closeBtn")
+  contentViewCloseBtn.id = "cl-content-view-close-btn"
   contentViewCloseBtn.addEventListener("click", () => {
     contentViewEle.classList.add("hidden")
   })
 
   contentViewContentEle = document.createElement("textarea")
-  contentViewContentEle.classList.add("content-view-content")
-  contentViewContentEle.id = "content-view-content"
+  contentViewContentEle.classList.add("cl-content-view-content")
+  contentViewContentEle.id = "cl-content-view-content"
 
   contentViewEle = document.createElement("div")
-  contentViewEle.classList.add("content-view")
-  contentViewEle.id = "content-view"
+  contentViewEle.classList.add("cl-content-view")
+  contentViewEle.id = "cl-content-view"
 
   contentViewRertyEle = createButton("重试")
-  contentViewRertyEle.classList.add("content-view-retry")
+  contentViewRertyEle.classList.add("cl-content-view-retry")
   contentViewRertyEle.addEventListener("click", async () => {
     if (activeRecognizeGeneral && activeDataUrl) {
       const closeLoading = loading("等待识别...")
       try {
         const content = await activeRecognizeGeneral.getContent(activeDataUrl)
         const contentViewContentEle = document.getElementById(
-          "content-view-content"
+          "cl-content-view-content"
         )
         contentViewContentEle.value = content
       } catch (error) {
@@ -359,7 +369,7 @@ function createContentView({ container = document.body } = {}) {
   })
 
   contentViewCopyEle = createButton("复制")
-  contentViewCopyEle.classList.add("content-view-copy")
+  contentViewCopyEle.classList.add("cl-content-view-copy")
   contentViewCopyEle.addEventListener("click", async () => {
     try {
       await copy(contentViewContentEle)
@@ -370,7 +380,7 @@ function createContentView({ container = document.body } = {}) {
   })
 
   contentViewCopeAndCloseEle = createButton("复制并关闭")
-  contentViewCopeAndCloseEle.classList.add("content-view-copy-and-close")
+  contentViewCopeAndCloseEle.classList.add("cl-content-view-copy-and-close")
   contentViewCopeAndCloseEle.addEventListener("click", async () => {
     try {
       await copy(contentViewContentEle)

@@ -1,0 +1,111 @@
+.cl-notification,
+.cl-message {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.65);
+  min-height: 40px;
+  top: 16px;
+  right: 16px;
+  width: 150px;
+  padding: 20px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: 0.3s;
+  z-index: 10000;
+}
+
+.cl-message {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: none;
+  min-width: 200px;
+  outline: 9999px solid rgba(0, 0, 0, 0.4);
+}
+
+.cl-spinner {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.cl-spinner .cl-path {
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: #409eff;
+  stroke-linecap: round;
+}
+
+.cl-spinner .cl-circular {
+  animation: loading-rotate 2s linear infinite;
+}
+
+.cl-spinner .cl-content {
+  text-align: center;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  to {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}
+
+@keyframes loading-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cl-notification .cl-content,
+.cl-message .cl-content {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #67c23a;
+}
+
+.cl-message .cl-content {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.cl-notification__closeBtn,
+.cl-message__closeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #909399;
+  font-size: 18px;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+}
+.cl-notification__closeBtn:hover {
+  color: #606266;
+}
+
+.cl-slide-from {
+  transform: translateX(40%);
+}

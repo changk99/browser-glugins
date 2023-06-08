@@ -17,7 +17,7 @@ function createCloseButton() {
  */
 function createButton(content) {
   const buttonEle = document.createElement('div')
-  buttonEle.classList.add('btn')
+  buttonEle.classList.add('cl-btn')
   buttonEle.textContent = content
   return buttonEle
 }
@@ -32,28 +32,28 @@ let notificationTimer = null
 function notify(message, notificationTimeout = 1500, container = document.body, isFullScreen = false) {
   let notificationCloseBtn = null
   let contentEle = null
-  let notificationEle = document.getElementById('notification')
+  let notificationEle = document.getElementById('cl-notification')
 
   if (!notificationEle) {
     notificationCloseBtn = createCloseButton()
-    notificationCloseBtn.classList.add('notification__closeBtn')
-    notificationCloseBtn.id = "notification-close-btn"
+    notificationCloseBtn.classList.add('cl-notification__closeBtn')
+    notificationCloseBtn.id = "cl-notification-close-btn"
 
     contentEle = document.createElement('div')
-    contentEle.classList.add('content')
-    contentEle.id = "notification-content"
+    contentEle.classList.add('cl-content')
+    contentEle.id = "cl-notification-content"
 
     notificationEle = document.createElement('div')
-    notificationEle.classList.add('notification')
-    notificationEle.id = "notification"
+    notificationEle.classList.add('cl-notification')
+    notificationEle.id = "cl-notification"
 
     notificationEle.appendChild(contentEle)
     notificationEle.appendChild(notificationCloseBtn)
 
     container.appendChild(notificationEle)
   } else {
-    notificationCloseBtn = document.getElementById('notification-close-btn')
-    contentEle = document.getElementById('notification-content')
+    notificationCloseBtn = document.getElementById('cl-notification-close-btn')
+    contentEle = document.getElementById('cl-notification-content')
   }
   
   contentEle.textContent = message
@@ -72,13 +72,13 @@ function notify(message, notificationTimeout = 1500, container = document.body, 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       classList.remove("hidden")
-      classList.add("slide-from")
+      classList.add("cl-slide-from")
       requestAnimationFrame(() => {
         if (notificationTimer) {
           clearTimeout(notificationTimer)
           notificationTimer = null
         }
-        classList.remove("slide-from")
+        classList.remove("cl-slide-from")
         notificationTimer = setTimeout(() => {
           classList.add("hidden")
         }, notificationTimeout)
@@ -103,28 +103,28 @@ function notify(message, notificationTimeout = 1500, container = document.body, 
  * @param {HTMLElement} container
  */
 function message(message, type = "primary", container = document.body, isFullScreen = true) {
-  let contentEle = document.getElementById('message-content')
-  let messageEle = document.getElementById('message')
+  let contentEle = document.getElementById('cl-message-content')
+  let messageEle = document.getElementById('cl-message')
 
   if (!messageEle) {
     messageCloseBtn = createCloseButton()
-    messageCloseBtn.classList.add('message__closeBtn')
-    messageCloseBtn.id = "message-close-btn"
+    messageCloseBtn.classList.add('cl-message__closeBtn')
+    messageCloseBtn.id = "cl-message-close-btn"
     // 关闭弹框
     messageCloseBtn.addEventListener("click", () => {
       messageEle.classList.add("hidden")
     })
 
     contentEle = document.createElement('div')
-    contentEle.classList.add('content')
-    contentEle.id = "message-content"
+    contentEle.classList.add('cl-content')
+    contentEle.id = "cl-message-content"
     if (type === 'error') {
       contentEle.style.color = "#f56c6c"
     }
 
     messageEle = document.createElement('div')
-    messageEle.classList.add('message')
-    messageEle.id = "message"
+    messageEle.classList.add('cl-message')
+    messageEle.id = "cl-message"
 
     messageEle.appendChild(contentEle)
     messageEle.appendChild(messageCloseBtn)
@@ -151,7 +151,7 @@ function message(message, type = "primary", container = document.body, isFullScr
 function loading(message, container = document.body, isFullScreen = true) {
   
   const spinner = document.createElement('div')
-  spinner.classList.add('spinner')
+  spinner.classList.add('cl-spinner')
   if (isFullScreen) {
     spinner.style.position = "fixed"
   } else {
@@ -159,10 +159,10 @@ function loading(message, container = document.body, isFullScreen = true) {
   }
 
   contentEle = document.createElement('div')
-  contentEle.classList.add('content')
+  contentEle.classList.add('cl-content')
   contentEle.textContent = message
 
-  spinner.innerHTML = `<svg class="circular" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none"></circle></svg>`
+  spinner.innerHTML = `<svg class="cl-circular" viewBox="0 0 50 50"><circle class="cl-path" cx="25" cy="25" r="20" fill="none"></circle></svg>`
   container.appendChild(spinner)
 
   spinner.appendChild(contentEle)

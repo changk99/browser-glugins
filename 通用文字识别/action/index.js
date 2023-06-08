@@ -1,10 +1,10 @@
 const syncStorage = chrome.storage.sync
-const setupEle = document.getElementById("setup")
-const inputEle = setupEle.querySelector(".checkbox__input")
-const platformsEle = document.getElementById("platforms")
-const platformSettingEle = document.getElementById("platform-setting")
-const openContentViewButtonEle = document.getElementById("open-content-view-button")
-const clearKeyEle = document.getElementById("clear-key")
+const setupEle = document.getElementById("cl-setup")
+const inputEle = setupEle.querySelector(".cl-checkbox__input")
+const platformsEle = document.getElementById("cl-platforms")
+const platformSettingEle = document.getElementById("cl-platform-setting")
+const openContentViewButtonEle = document.getElementById("cl-open-content-view-button")
+const clearKeyEle = document.getElementById("cl-clear-key")
 
 /**
  * 向 content 脚本发送信号
@@ -24,8 +24,8 @@ function sendMessage(message) {
 
 // 启动和禁止
 setupEle.addEventListener("click", (e) => {
-  inputEle.classList.toggle("is-checked")
-  if (inputEle.classList.contains("is-checked")) {
+  inputEle.classList.toggle("cl-is-checked")
+  if (inputEle.classList.contains("cl-is-checked")) {
     syncStorage.set(
       {
         disabled: false,
@@ -96,7 +96,7 @@ platformSettingEle.addEventListener('change', async (event) => {
 function createTabEle(platform, platformConfig) {
   const div = document.createElement('div')
   platformsEle.appendChild(div)
-  div.outerHTML = `<div data-platform="${platform}" class="platform">${platformConfig.name}</div>`
+  div.outerHTML = `<div data-platform="${platform}" class="cl-platform">${platformConfig.name}</div>`
 }
 
 /**
@@ -108,15 +108,15 @@ function createPlatformSettingEle(platform, platformConfig, settings) {
   const div = document.createElement('div')
   platformSettingEle.appendChild(div)
   div.setAttribute('data-platform', platform)
-  div.setAttribute('class', 'form-item')
+  div.setAttribute('class', 'cl-form-item')
   div.innerHTML = platformConfig.settings.map((settingName) => {
-    return `<div><label class="label" for="url">${settingName}: </label>
+    return `<div><label class="cl-label" for="cl-url">${settingName}: </label>
     <input
       data-setting="${settingName}"
       placeholder="请填写 ${settingName}"
-      class="input"
+      class="cl-input"
       type="text"
-      id="url"
+      id="cl-url"
       value="${(settings[platform] && settings[platform][settingName]) || ""}"
     /></div>`
   }).join("")
@@ -160,7 +160,7 @@ function init() {
       settings: {}
     })
     .then(({ activePlatform, disabled, settings }) => {
-      inputEle.classList.toggle("is-checked", !disabled)
+      inputEle.classList.toggle("cl-is-checked", !disabled)
       
       Object.keys(PLATFORMS).forEach((platform) => {
         // 初始化平台标签

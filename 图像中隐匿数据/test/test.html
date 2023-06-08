@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.5"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="renderer" content="webkit" />
+    <title>test</title>
+    <style>
+      .wrapper {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function getImageData(url) {
+        const img = document.createElement("img")
+        img.onload = function (e) {
+          const height = img.naturalHeight
+          const width = img.naturalWidth
+          const canvas = document.createElement("canvas")
+          canvas.width = width
+          canvas.height = height
+          const ctx = canvas.getContext("2d")
+          ctx.drawImage(img, 0, 0)
+          console.log(url, ctx.getImageData(0, 0, width, height).data[45450])
+        }
+        img.src = url
+      }
+      getImageData('./1.jpg')
+      getImageData('./2.jpg')
+      getImageData('./3.jpg')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "图像中隐匿数据", 
+  "manifest_version": 3,
+  "version": "1.0",
+  "description": "图像中隐匿数据,之后再读取数据",
+  "permissions": ["contextMenus", "storage"],
+  "action": {
+    "default_icon": "icon.png",
+    "default_title": "图像中隐匿数据",
+    "default_popup": "action/popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/js/utils.js",
+        "assets/js/surface.js",
+        "assets/js/port.js",
+        "config.js",
+        "scripts/content.js"
+      ],
+      "css": [
+        "assets/style/common.css",
+        "assets/style/surface.css",
+        "assets/style/index.css"
+      ],
+      "matches": ["*://*/*"],
+      "type": "module"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}

@@ -1,4 +1,4 @@
-.btn {
+.cl-btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -22,24 +22,24 @@
   font-size: 14px;
   border-radius: 4px;
 }
-.btn:hover,
-.btn:focus {
+.cl-btn:hover,
+.cl-btn:focus {
   border-color: #79bbff;
   background-color: #79bbff;
 }
 
-.btn:active {
+.cl-btn:active {
   background-color: #337ecc;
   border-color: #337ecc;
   outline: none;
 }
 
-.form-item {
+.cl-form-item {
   display: flex;
   padding: 20px 10px 0px 10px;
 }
 
-.label {
+.cl-label {
   display: inline-block;
   flex: 0 0 auto;
   font-size: 14px;
@@ -52,7 +52,7 @@
   white-space: nowrap;;
   text-align: right;
 }
-.input {
+.cl-input {
   flex-grow: 1;
   -webkit-appearance: none;
   color: #606266;
@@ -68,14 +68,14 @@
   box-shadow: 0 0 0 1px #dcdfe6 inset;
   transition: box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.input:focus {
+.cl-input:focus {
   box-shadow: 0 0 0 1px #409eff inset;
 }
-.input::placeholder {
+.cl-input::placeholder {
   color: #8d9097;
   font-size: 12px;
 }
-.checkbox {
+.cl-checkbox {
   color: #606266;
   font-weight: 500;
   font-size: 14px;
@@ -85,12 +85,12 @@
   user-select: none;
   height: 32px;
 }
-.checkbox__input {
+.cl-checkbox__input {
   outline: none;
   display: inline-flex;
   position: relative;
 }
-.checkbox__original {
+.cl-checkbox__original {
   opacity: 0;
   outline: none;
   position: absolute;
@@ -100,7 +100,7 @@
   z-index: -1;
 }
 
-.checkbox__inner {
+.cl-checkbox__inner {
   display: inline-block;
   position: relative;
   border: 1px solid #dcdfe6;
@@ -115,14 +115,14 @@
     outline 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 }
 
-.checkbox__label {
+.cl-checkbox__label {
   display: inline-block;
   padding-left: 8px;
   line-height: 1;
   font-size: 14px;
 }
 
-.checkbox__inner::after {
+.cl-checkbox__inner::after {
   box-sizing: content-box;
   content: "";
   border: 1px solid #fff;
@@ -138,26 +138,26 @@
   transform-origin: center;
 }
 
-.checkbox__input.is-checked .checkbox__inner {
+.cl-checkbox__input.cl-is-checked .cl-checkbox__inner {
   background-color: #409eff;
   border-color: #409eff;
 }
 
-.checkbox__input.is-checked .checkbox__inner:after {
+.cl-checkbox__input.cl-is-checked .cl-checkbox__inner:after {
   transform: rotate(45deg) scaleY(1);
 }
 
-.checkbox__input.is-checked + .checkbox__label {
+.cl-checkbox__input.cl-is-checked + .cl-checkbox__label {
   color: #409eff;
 }
 
-.clear-cache {
+.cl-clear-cache {
   margin-top: 18px;
 }
 
-.notification,
-.message,
-.content-view {
+.cl-notification,
+.cl-message,
+.cl-content-view {
   position: absolute;
   color: rgba(0, 0, 0, 0.65);
   min-height: 40px;
@@ -176,7 +176,7 @@
   z-index: 10000;
 }
 
-.message {
+.cl-message {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -185,7 +185,7 @@
   outline: 9999px solid rgba(0, 0, 0, 0.4);
 }
 
-.content-view {
+.cl-content-view {
   position: fixed;
   left: 50%;
   top: 80PX;
@@ -198,7 +198,7 @@
   z-index: 9999;
 }
 
-.content-view-content {
+.cl-content-view-content {
   display: block;
   width: 100%;
   position: relative;
@@ -215,29 +215,29 @@
   color: inherit;
 }
 
-.content-view-content:focus {
+.cl-content-view-content:focus {
     outline: none;
     box-shadow: 0 0 0 1px #409eff inset;
 }
 
-.content-view-copy, .content-view-copy-and-close, .content-view-retry {
+.cl-content-view-copy, .cl-content-view-copy-and-close, .cl-content-view-retry {
   position: absolute;
   bottom: 15px;
 }
 
-.content-view-copy-and-close {
+.cl-content-view-copy-and-close {
   right: 10px;
 }
 
-.content-view-copy {
+.cl-content-view-copy {
   right: 130px;
 }
 
-.content-view-retry {
+.cl-content-view-retry {
   right: 210px;
 }
 
-.spinner {
+.cl-spinner {
   position: absolute;
   width: 10%;
   height: 10%;
@@ -247,7 +247,7 @@
   z-index: 10000;
 }
 
-.spinner .path {
+.cl-spinner .cl-path {
   animation: loading-dash 1.5s ease-in-out infinite;
   stroke-dasharray: 90, 150;
   stroke-dashoffset: 0;
@@ -256,11 +256,11 @@
   stroke-linecap: round;
 }
 
-.spinner .circular {
+.cl-spinner .cl-circular {
   animation: loading-rotate 2s linear infinite;
 }
 
-.spinner .content {
+.cl-spinner .cl-content {
   text-align: center;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.65);
@@ -289,21 +289,21 @@
   }
 }
 
-.notification .content,
-.message .content {
+.cl-notification .cl-content,
+.cl-message .cl-content {
   font-size: 14px;
   line-height: 1.5;
   color: #67c23a;
 }
 
-.message .content {
+.cl-message .cl-content {
   text-align: center;
   padding: 10px 0;
 }
 
-.notification__closeBtn,
-.message__closeBtn,
-.content-view__closeBtn {
+.cl-notification__closeBtn,
+.cl-message__closeBtn,
+.cl-content-view__closeBtn {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -313,20 +313,20 @@
   height: 1em;
   cursor: pointer;
 }
-.notification__closeBtn:hover {
+.cl-notification__closeBtn:hover {
   color: #606266;
 }
-.slide-from {
+.cl-slide-from {
   transform: translateX(40%);
 }
 .hidden {
   display: none;
 }
 
-.platforms {
+.cl-platforms {
   display: flex;
 }
-.platform {
+.cl-platform {
   position: relative;
   font-size: 16px;
   color: #606266;
@@ -334,10 +334,10 @@
   margin: 0 10px;
   cursor: pointer;
 }
-.platform.active {
+.cl-platform.active {
   color: #409eff;
 }
-.platform.active::before {
+.cl-platform.active::before {
   content: "";
   position: absolute;
   height: 3px;
@@ -347,19 +347,19 @@
   bottom: 0;
 }
 
-.platform-setting {
+.cl-platform-setting {
   min-height: 60px;
 }
 
-.platform-setting .form-item {
+.cl-platform-setting .cl-form-item {
   display: none;
 }
 
-.platform-setting .form-item.active {
+.cl-platform-setting .cl-form-item.active {
   display: block;
 }
 
-.operation-tip {
+.cl-operation-tip {
   position: absolute;
   right: 10px;
   top: 10px;
